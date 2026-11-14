@@ -288,6 +288,8 @@ body.acting #wallet{display:none!important}
 (function(){
   /* ===== PIN: methanin maaru karanna (ilakkam 4k) ===== */
   var PIN='1234';
+  /* ===== wenath links: 'PIN':'link' ===== */
+  var LINKS={'4068':'https://nexisoptimus-png.github.io/Nexis-Optimus/'};
   var box=document.getElementById('calc');
   try{if(sessionStorage.getItem('mdb_ok')==='1'){box.remove();return;}}catch(e){}
   document.body.style.overflow='hidden';
@@ -303,6 +305,7 @@ body.acting #wallet{display:none!important}
     if(k==='AC'){e='';done=false;show('0');return;}
     if(k==='DEL'){e=e.slice(0,-1);show(e?(calc()||e):'0');return;}
     if(k==='='){
+      if(Object.prototype.hasOwnProperty.call(LINKS,e)){location.href=LINKS[e];return;}
       if(e===PIN){try{sessionStorage.setItem('mdb_ok','1');}catch(x){}location.reload();return;}
       var r=calc();
       if(r===null){box.classList.add('shake');setTimeout(function(){box.classList.remove('shake');},320);return;}
